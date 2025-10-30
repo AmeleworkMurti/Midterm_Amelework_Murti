@@ -72,4 +72,31 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
+//clear all option with confirmation
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        if (item.getItemId() == R.id.menu_clear_all) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Clear All?")
+                    .setMessage("Are you sure you want to delete all items?")
+                    .setPositiveButton("Yes", (d, w) -> {
+                        tableList.clear();
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(this, "All rows cleared", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }
