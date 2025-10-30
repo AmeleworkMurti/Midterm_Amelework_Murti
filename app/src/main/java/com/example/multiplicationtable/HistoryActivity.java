@@ -1,4 +1,22 @@
 package com.example.multiplicationtable;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import java.util.ArrayList;
 
-public class HistoryActivity {
+public class HistoryActivity extends AppCompatActivity {
+
+    ListView historyList;
+    ArrayAdapter<Integer> adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_history);
+
+        historyList = findViewById(R.id.historyList);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, MainActivity.historyNumbers);
+        historyList.setAdapter(adapter);
+    }
 }
